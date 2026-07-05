@@ -341,36 +341,72 @@ h4 {
     object-fit: cover; /* Quan trọng: video sẽ cắt bớt để lấp đầy khung mà không méo */
     z-index: 1;
 }
+/* ==== CSS RESPONSIVE CƠ BẢN CHO ĐIỆN THOẠI ==== */
 
-/* Dành cho màn hình nhỏ (Điện thoại) */
+/* Áp dụng cho màn hình có chiều rộng tối đa 768px (máy tính bảng trở xuống) */
 @media (max-width: 768px) {
-    /* 1. Ẩn Sidebar hoặc biến nó thành thanh ngang trên cùng */
+
+    /* 1. Ẩn Sidebar hoặc biến nó thành thanh menu ngang */
+    /* Tùy chọn 1: Ẩn hoàn toàn (cần thêm nút menu để mở sau) */
+    .sidebar {
+        display: none; /* Tạm thời ẩn để tiết kiệm không gian */
+    }
+
+    /* Tùy chọn 2 (Khuyên dùng): Biến Sidebar thành thanh ngang trên đầu */
+    /*
     .app-wrapper {
         flex-direction: column;
     }
-
     .sidebar {
         width: 100%;
-        height: auto; /* Không để cố định chiều cao */
+        height: auto;
+        position: relative;
+    }
+    */
+
+    /* 2. Ép các cột Kanban xếp chồng lên nhau */
+    .main-content {
+        padding: 0 !important; /* Loại bỏ padding thừa trên mobile */
     }
 
-    /* 2. Ép các cột Kanban xếp chồng lên nhau thay vì nằm ngang */
-    .row {
-        flex-direction: column;
+    .container.mt-4 {
+        padding-top: 0 !important;
     }
 
-    .list-group-container {
+    /* Ép các cột Bootstrap (col-md-4) thành 100% chiều rộng */
+    .row > [class*='col-'] {
         width: 100%;
+        margin-bottom: 1rem; /* Tạo khoảng cách giữa các cột */
     }
 
-    /* 3. Chỉnh lại Pomodoro cho vừa khung hình điện thoại */
-    #pomodoro-section {
-        left: 0;
+    /* 3. Chỉnh lại Form thêm task */
+    .card.p-4 {
+        padding: 1rem !important;
+        margin: 0.5rem !important;
+    }
+
+    .card .row .col-md-5,
+    .card .row .col-md-2 {
         width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    /* 4. Chỉnh lại kích thước chữ cho dễ đọc */
+    h1 {
+        font-size: 1.5rem !important; /* Thu nhỏ tiêu đề */
+        margin-top: 1rem !important;
+    }
+    h4 {
+        font-size: 1.2rem !important;
+    }
+
+    /* 5. Chỉnh lại phần Pomodoro */
+    #timer {
+        font-size: 3rem !important; /* Thu nhỏ đồng hồ */
     }
 
     .glass-card {
-        width: 90%; /* Thu nhỏ thẻ hiển thị */
-        padding: 1.5rem !important;
+        width: 95% !important;
+        padding: 1rem !important;
     }
 }
