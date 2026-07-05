@@ -341,3 +341,39 @@ h4 {
     object-fit: cover; /* Quan trọng: video sẽ cắt bớt để lấp đầy khung mà không méo */
     z-index: 1;
 }
+
+/* --- CẤU HÌNH RESPONSIVE CHO ĐIỆN THOẠI --- */
+@media (max-width: 768px) {
+    /* Ép toàn bộ khung bao ngoài thành cột dọc */
+    body, .app-wrapper, .container-fluid {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+    }
+
+    /* Đặt Sidebar rộng hết cỡ và nằm trên cùng */
+    .sidebar {
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        flex: none !important;
+        padding: 10px !important;
+    }
+
+    /* Đặt phần nội dung task rộng hết cỡ và nằm dưới Sidebar */
+    .main-content {
+        width: 100% !important;
+        margin-left: 0 !important;
+        padding: 15px !important;
+    }
+
+    /* Ép các cột TODO, DOING, DONE xuống dòng nếu cần */
+    .row {
+        flex-direction: column !important;
+    }
+
+    .col-md-4 {
+        width: 100% !important;
+        margin-bottom: 20px;
+    }
+}
