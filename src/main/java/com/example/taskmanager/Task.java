@@ -16,6 +16,12 @@ public class Task {
     private String description;
     private LocalDateTime dueDate;
 
+    private String status; // Giá trị ví dụ: "TODO", "DOING", "DONE"
+
+    // Getter và Setter cho status
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
+
     @ManyToOne
     @JoinColumn(name = "user_id") // Tạo mối quan hệ với bảng Users
     private User user;

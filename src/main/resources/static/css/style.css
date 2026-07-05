@@ -1,14 +1,144 @@
+/* --- 1. BIẾN SỐ MÀU SẮC & PHÔNG CHỮ --- */
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --shadow-main: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-image: url('../img/bg-img.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
 }
 
+/* --- 2. CONTAINER CHÍNH & TIÊU ĐỀ --- */
 h1 {
-    color: #333;
+    font-weight: 800;
+    color: #2d3436;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 2rem !important;
 }
 
-#task-list {
-    list-style: none;
-    padding: 0;
+/* --- 3. HIỆU ỨNG KÍNH MỜ CHO CỘT (Glassmorphism) --- */
+.list-group {
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    box-shadow: var(--shadow-main);
+    padding: 20px !important;
+    max-height: 70vh; /* Giới hạn chiều cao cột tối đa bằng 70% màn hình */
+    overflow-y: auto;  /* Tự động hiện thanh cuộn nếu nội dung vượt quá max-height */
 }
-body { background-color: lightblue; }
+
+.list-group::-webkit-scrollbar {
+    width: 6px;
+}
+.list-group::-webkit-scrollbar-thumb {
+    background-color: #cbd5e0;
+    border-radius: 10px;
+}
+
+/* --- 4. THẺ TASK NỔI --- */
+.list-group-item {
+    background: rgba(255, 255, 255, 0.8) !important;
+    border: 1px solid rgba(255, 255, 255, 0.6) !important;
+    border-radius: 15px !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    margin-bottom: 15px !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.list-group-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* --- 5. NÚT BẤM HIỆN ĐẠI --- */
+.btn-group .btn {
+    border-radius: 10px !important;
+    margin-left: 5px;
+    transition: all 0.2s;
+}
+
+h4 {
+    font-weight: 900;
+    color: #ffffff; /* Đổi sang màu trắng để nổi bật trên mọi nền */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Đổ bóng chữ */
+    letter-spacing: 2px;
+    margin-bottom: 20px !important;
+}
+/* Nút Clear - Luôn hiện nhẹ nhàng để người dùng thấy */
+.clear-btn {
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    z-index: 999;
+    padding: 0 5px;
+}
+
+/* Hiệu ứng khi di chuột vào */
+.clear-btn:hover {
+    color: #ff7675 !important;
+    transform: scale(1.2);
+}
+
+/* Đảm bảo tiêu đề và nút cùng hàng */
+.column-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.25) !important; /* Độ trong suốt tinh tế */
+    backdrop-filter: blur(15px); /* Hiệu ứng mờ đục */
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 20px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.form-control {
+    background: rgba(255, 255, 255, 0.7) !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    border-radius: 12px !important;
+    padding: 12px !important;
+}
+
+.form-control:focus {
+    background: #ffffff !important;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25) !important;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%) !important;
+    border: none !important;
+    border-radius: 12px !important;
+    font-weight: 600;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 5px 15px rgba(37, 117, 252, 0.4);
+    transform: translateY(-2px);
+}
+
+.task-content strong {
+    flex-grow: 1;
+    min-width: 0;       /* Quan trọng: Giúp flexbox hiểu nó được phép co lại */
+    word-wrap: break-word; /* Tự xuống dòng khi gặp từ dài */
+    word-break: break-word; /* Hỗ trợ xuống dòng cho các trình duyệt */
+    margin-right: 10px;    /* Tạo khoảng cách với nút bấm */
+}
+
+.list-group-item .d-flex {
+    align-items: flex-start !important; /* Căn lề trên cùng để nút không bị đẩy xuống */
+}
+
+.btn-info { background: #d1e7dd !important; color: #0f5132 !important; border: none !important; }
+.btn-danger { background: #f8d7da !important; color: #842029 !important; border: none !important; }
