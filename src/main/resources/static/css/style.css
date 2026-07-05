@@ -341,3 +341,36 @@ h4 {
     object-fit: cover; /* Quan trọng: video sẽ cắt bớt để lấp đầy khung mà không méo */
     z-index: 1;
 }
+
+/* Dành cho màn hình nhỏ (Điện thoại) */
+@media (max-width: 768px) {
+    /* 1. Ẩn Sidebar hoặc biến nó thành thanh ngang trên cùng */
+    .app-wrapper {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto; /* Không để cố định chiều cao */
+    }
+
+    /* 2. Ép các cột Kanban xếp chồng lên nhau thay vì nằm ngang */
+    .row {
+        flex-direction: column;
+    }
+
+    .list-group-container {
+        width: 100%;
+    }
+
+    /* 3. Chỉnh lại Pomodoro cho vừa khung hình điện thoại */
+    #pomodoro-section {
+        left: 0;
+        width: 100%;
+    }
+
+    .glass-card {
+        width: 90%; /* Thu nhỏ thẻ hiển thị */
+        padding: 1.5rem !important;
+    }
+}
