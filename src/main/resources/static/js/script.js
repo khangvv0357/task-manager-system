@@ -197,5 +197,38 @@ document.addEventListener('click', (e) => {
     }
 });
 
+const kanbanSection = document.querySelector('.container'); // Khối chứa Kanban
+const pomodoroSection = document.getElementById('pomodoro-section');
+const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+// Chuyển đổi màn hình
+document.getElementById('nav-kanban').addEventListener('click', () => {
+    document.getElementById('kanban-section').style.display = 'block';
+    document.getElementById('pomodoro-section').style.display = 'none';
+});
+
+document.getElementById('nav-pomodoro').addEventListener('click', () => {
+    document.getElementById('kanban-section').style.display = 'none';
+    document.getElementById('pomodoro-section').style.display = 'block';
+});
+
+document.getElementById('nav-pomodoro').addEventListener('click', () => {
+    // Ẩn Kanban, Hiện Pomodoro
+    document.getElementById('kanban-section').style.display = 'none';
+    document.getElementById('pomodoro-section').style.display = 'block';
+
+    // Đổi nền toàn trang sang ảnh riêng cho Pomodoro
+    document.body.style.backgroundImage = "url('../img/pomodoro-bg.jpg')";
+});
+
+document.getElementById('nav-kanban').addEventListener('click', () => {
+    // Hiện Kanban, Ẩn Pomodoro
+    document.getElementById('kanban-section').style.display = 'block';
+    document.getElementById('pomodoro-section').style.display = 'none';
+
+    // Trả lại nền cũ cho Kanban
+    document.body.style.backgroundImage = "url('../img/bg-img.jpg')";
+});
+
 // Khởi tạo
 window.addEventListener('load', loadTasks);

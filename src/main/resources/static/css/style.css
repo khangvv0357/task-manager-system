@@ -1,3 +1,24 @@
+/* Loại bỏ tất cả khoảng cách mặc định của trình duyệt */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Đảm bảo toàn bộ ứng dụng chiếm đúng 100% chiều cao và chiều rộng */
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden; /* Ngăn thanh cuộn ngang xuất hiện */
+}
+
+/* Ép phần nội dung chính không bị giới hạn bởi padding Bootstrap */
+.main-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    width: 100%;
+}
+
 /* --- 1. BIẾN SỐ MÀU SẮC & PHÔNG CHỮ --- */
 :root {
     --glass-bg: rgba(255, 255, 255, 0.7);
@@ -142,3 +163,181 @@ h4 {
 
 .btn-info { background: #d1e7dd !important; color: #0f5132 !important; border: none !important; }
 .btn-danger { background: #f8d7da !important; color: #842029 !important; border: none !important; }
+
+
+/*aside*/
+/* Bao bọc toàn bộ trang */
+.app-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar bên trái */
+.sidebar {
+    width: 250px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    flex-shrink: 0; /* Không cho sidebar bị co lại */
+}
+
+.sidebar-nav {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    padding: 12px 15px;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.sidebar-nav li a:hover, .sidebar-nav li a.active {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+/* Nội dung chính */
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 100vh;
+}
+
+/* Tiêu đề cột (TODO, DOING, DONE) - Tăng độ sắc nét */
+h4 {
+    font-weight: 900;
+    color: #ffffff;
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); /* Bóng đổ đậm hơn để tách biệt khỏi nền */
+    letter-spacing: 1.5px;
+}
+
+/* Nội dung task - Chữ đen rõ ràng trên nền trắng */
+.list-group-item strong {
+    color: #2d3436; /* Xám đậm thay vì đen tuyền để dịu mắt */
+}
+
+.list-group-item small {
+    color: #636e72; /* Xám nhạt hơn cho phần mô tả */
+}
+.list-group-item {
+    background: rgba(255, 255, 255, 0.9) !important; /* Tăng độ đục để chữ dễ đọc hơn */
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1); /* Bóng đổ sâu hơn tạo chiều sâu */
+}
+.sidebar {
+    background: rgba(0, 0, 0, 0.3); /* Dùng tông màu tối hơn để sidebar tách biệt hẳn với khu vực làm việc */
+    backdrop-filter: blur(20px);
+}
+
+.sidebar-nav li a {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.sidebar-nav li a.active {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    border-left: 4px solid #74b9ff; /* Thêm gạch dọc màu xanh để tạo điểm nhấn hiện đại */
+}
+
+#pomodoro-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    transition: background 1s ease; /* Hiệu ứng chuyển nền mượt mà */
+}
+
+/* Nền mặc định của Pomodoro */
+.pomodoro-bg-default {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../img/pomodoro-bg.jpg');
+}
+
+#pomodoro-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Giúp video tràn màn hình mà không bị méo */
+    z-index: 1;        /* Nằm sau cùng */
+}
+
+#pomodoro-section {
+    position: relative; /* Quan trọng để z-index hoạt động */
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#pomodoro-video::after {
+    content: "";
+    position: absolute;
+    background: rgba(0,0,0,0.4); /* Lớp phủ đen 40% */
+}
+
+/* 1. Xóa khoảng cách thừa của Bootstrap container */
+.main-content .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* 2. Làm cho khối Pomodoro tràn hết không gian */
+#pomodoro-section {
+    width: 100%;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 3. Tăng tính "hòa quyện" cho Glass-card */
+.glass-card {
+    background: rgba(0, 0, 0, 0.3) !important; /* Dùng nền đen mờ thay vì trắng để hợp với ảnh */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem !important;
+}
+
+/* 4. Tăng độ tương phản chữ */
+.text-white {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.sidebar {
+    background: rgba(30, 25, 20, 0.85); /* Màu nâu tối rất nhẹ (tông ấm) */
+    backdrop-filter: blur(15px);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#pomodoro-section {
+    width: 100%;
+    min-height: 100vh; /* Chiều cao tối thiểu bằng màn hình */
+    position: relative;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Đảm bảo video không bao giờ bị thừa mép */
+#pomodoro-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Quan trọng: video sẽ cắt bớt để lấp đầy khung mà không méo */
+    z-index: 1;
+}
