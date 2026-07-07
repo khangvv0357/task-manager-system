@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trello Task Manager</title>
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/style.css">
@@ -12,12 +11,14 @@
 <body>
 
 <div class="app-wrapper">
-    <aside class="sidebar">
-        <div class="sidebar-header p-3 text-white">
-            <h5>Task Manager</h5>
-        </div>
+    <aside class="sidebar" id="sidebar">
         <ul class="sidebar-nav">
-            <li><a href="#" id="nav-kanban" class="active"><i class="bi bi-kanban me-2"></i> Bảng điều khiển</a></li>
+            <li>
+                <a href="#" id="menu-toggle" class="text-warning">
+                    <i class="bi bi-list"></i> <span class="menu-text">MENU</span>
+                </a>
+            </li>
+            <hr class="text-white"> <li><a href="#" id="nav-kanban" class="active"><i class="bi bi-kanban me-2"></i> Bảng điều khiển</a></li>
             <li><a href="#" id="nav-plan"><i class="bi bi-calendar-event me-2"></i> Kế hoạch</a></li>
             <li><a href="#" id="nav-stats"><i class="bi bi-graph-up me-2"></i> Thống kê</a></li>
             <li><a href="#" id="nav-pomodoro"><i class="bi bi-clock me-2"></i> Pomodoro</a></li>

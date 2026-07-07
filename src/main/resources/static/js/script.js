@@ -39,14 +39,14 @@ function loadTasks() {
                 });
 
                 // 1. Tìm nút Edit
-                const editBtn = item.querySelector('.edit-btn');
-                if (editBtn) {
-                    editBtn.addEventListener('click', () => {
-                        openEditModal(task.id, task.title, task.description);
-                    });
-                } else {
-                    console.warn("Không tìm thấy nút Edit trong task:", task.title);
-                }
+                const editBtn = document.createElement('button');
+                editBtn.className = 'btn btn-sm btn-link';
+                editBtn.innerHTML = '<i class="bi bi-pencil-fill"></i>';
+
+// Dòng này là chìa khóa: Gắn sự kiện click vào nút
+                editBtn.onclick = function() {
+                    openEditModal(task); // task ở đây là đối tượng dữ liệu của dòng đó
+                };
 
 // 2. Tìm nút Xóa
                 const deleteBtn = item.querySelector('.delete-btn');
@@ -229,6 +229,39 @@ document.getElementById('nav-kanban').addEventListener('click', () => {
     // Trả lại nền cũ cho Kanban
     document.body.style.backgroundImage = "url('../img/bg-img.jpg')";
 });
+
+document.getElementById('menu-toggle').addEventListener('click', function(e) {
+    e.preventDefault();
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('collapsed');
+});
+
+// Khi người dùng chọn ngày bắt đầu và nhập số ngày
+document.getElementById('editEstimatedDays').addEventListener('input', function() {
+    const start = new Date(document.getElementById('editStartDate').value);
+    const days = parseInt(this.value);
+    if (!isNaN(days) && start) {
+        const due = new Date(start);
+        due.setDate(start.getDate() + days);
+        document.getElementById('editDueDate').value = due.toISOString().split('T')[0];
+    }
+});
+
+function openEditModal(task) {
+    // Đổ dữ liệu vào Modal
+    document.getElementById('editId').value = task.id;
+    document.getElementById('editTitle').value = task.title;
+    document.getElementById('editDesc').value = task.description || '';
+
+    // Nếu bạn đã có trường ngày tháng trong HTML
+    if(task.startDate) document.getElementById('editStartDate').value = task.startDate;
+    if(task.dueDate) document.getElementById('editDueDate').value = task.dueDate;
+
+    // Kích hoạt Modal Bootstrap
+    const modalElement = document.getElementById('editModal');
+    const modal = new bootstrap.Modal(modalElement);
+    modal.show();
+}
 
 // Khởi tạo
 window.addEventListener('load', loadTasks);

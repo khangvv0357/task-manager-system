@@ -341,72 +341,85 @@ h4 {
     object-fit: cover; /* Quan trọng: video sẽ cắt bớt để lấp đầy khung mà không méo */
     z-index: 1;
 }
-/* ==== CSS RESPONSIVE CƠ BẢN CHO ĐIỆN THOẠI ==== */
 
-/* Áp dụng cho màn hình có chiều rộng tối đa 768px (máy tính bảng trở xuống) */
+/* Sidebar mặc định */
+.sidebar {
+    width: 250px;
+    transition: width 0.3s ease;
+}
+
+/* Sidebar khi thu nhỏ */
+.sidebar.collapsed {
+    width: 60px; /* Vẫn giữ lại 60px để hiển thị các icon */
+}
+
+/* Ẩn chữ khi sidebar thu nhỏ */
+.sidebar.collapsed .sidebar-nav a span,
+.sidebar.collapsed .sidebar-nav a:not(#menu-toggle) {
+    display: none;
+}
+
+/* Đảm bảo sidebar có position relative */
+.sidebar {
+    position: relative;
+    /* ... các thuộc tính khác ... */
+}
+
+/* Định dạng cho nút MENU */
+#menu-toggle {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    color: #ffc107; /* Màu vàng của bạn */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#menu-toggle i {
+    font-size: 1.5rem;
+}
+/* Trạng thái sidebar khi bị thu nhỏ (collapsed) */
+.sidebar.collapsed .menu-text {
+    display: none; /* Ẩn chữ MENU khi sidebar thu nhỏ */
+}
+
+/* Căn chỉnh icon cho đẹp khi thu nhỏ */
+.sidebar.collapsed #menu-toggle {
+    justify-content: center; /* Đưa icon ra giữa */
+}
+
+/* --- CẤU HÌNH RESPONSIVE CHO ĐIỆN THOẠI --- */
 @media (max-width: 768px) {
+    /* Ép toàn bộ khung bao ngoài thành cột dọc */
+    body, .app-wrapper, .container-fluid {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+    }
 
-    /* 1. Ẩn Sidebar hoặc biến nó thành thanh menu ngang */
-    /* Tùy chọn 1: Ẩn hoàn toàn (cần thêm nút menu để mở sau) */
+    /* Đặt Sidebar rộng hết cỡ và nằm trên cùng */
     .sidebar {
-        display: none; /* Tạm thời ẩn để tiết kiệm không gian */
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        flex: none !important;
+        padding: 10px !important;
     }
 
-    /* Tùy chọn 2 (Khuyên dùng): Biến Sidebar thành thanh ngang trên đầu */
-    /*
-    .app-wrapper {
-        flex-direction: column;
-    }
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-    }
-    */
-
-    /* 2. Ép các cột Kanban xếp chồng lên nhau */
+    /* Đặt phần nội dung task rộng hết cỡ và nằm dưới Sidebar */
     .main-content {
-        padding: 0 !important; /* Loại bỏ padding thừa trên mobile */
+        width: 100% !important;
+        margin-left: 0 !important;
+        padding: 15px !important;
     }
 
-    .container.mt-4 {
-        padding-top: 0 !important;
+    /* Ép các cột TODO, DOING, DONE xuống dòng nếu cần */
+    .row {
+        flex-direction: column !important;
     }
 
-    /* Ép các cột Bootstrap (col-md-4) thành 100% chiều rộng */
-    .row > [class*='col-'] {
-        width: 100%;
-        margin-bottom: 1rem; /* Tạo khoảng cách giữa các cột */
-    }
-
-    /* 3. Chỉnh lại Form thêm task */
-    .card.p-4 {
-        padding: 1rem !important;
-        margin: 0.5rem !important;
-    }
-
-    .card .row .col-md-5,
-    .card .row .col-md-2 {
-        width: 100%;
-        margin-bottom: 0.5rem;
-    }
-
-    /* 4. Chỉnh lại kích thước chữ cho dễ đọc */
-    h1 {
-        font-size: 1.5rem !important; /* Thu nhỏ tiêu đề */
-        margin-top: 1rem !important;
-    }
-    h4 {
-        font-size: 1.2rem !important;
-    }
-
-    /* 5. Chỉnh lại phần Pomodoro */
-    #timer {
-        font-size: 3rem !important; /* Thu nhỏ đồng hồ */
-    }
-
-    .glass-card {
-        width: 95% !important;
-        padding: 1rem !important;
+    .col-md-4 {
+        width: 100% !important;
+        margin-bottom: 20px;
     }
 }
